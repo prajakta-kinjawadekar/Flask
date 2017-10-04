@@ -1,0 +1,120 @@
+body{
+	background-color: #e6e6e6;
+}
+.navbar{
+	background-color:black;
+	margin-top:10px;
+	margin-bottom:0px;
+	height:70px;
+}
+
+
+#logo{
+	margin-left:0px;
+	margin-top:0px;
+	height:40px;
+	width:200px;
+}
+.input-group{
+	margin-top: 10px;
+}
+
+#map-container{
+	margin-top:90px;
+}
+.show-grid [class*="span"] {
+    background-color: #ddd;
+	margin-right:60%;
+}
+.categoryIcon{
+	padding-left:0px;
+	
+}
+.fa.fa-chevron-circle-right {
+    right: 0;
+}
+.fa.fa-chevron-circle-left {
+    left: 0;
+}
+.fa.fa-chevron-circle-right, .fa.fa-chevron-circle-left {
+    margin-bottom: 1px;
+    position: absolute;
+    top: -30px;
+    color:#337ab7;
+}
+
+.carousel-control{
+width:5%;
+}
+.panel-body{
+	position:relative;
+	padding:0px;
+}
+.btn-primary {
+    background-color: red;
+    border-color: red;
+    border-radius: 0;
+    bottom: -15px;
+    color: #fff;
+    position: relative;
+    width: 100%;
+	-webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.38);
+-moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.38);
+box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.38);	
+}
+.btn-primary {
+    background-color: #337ab7;
+    border-color: #fff;
+}
+.panel-default{
+-webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.38);
+-moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.38);
+box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.38);
+    border: medium none;
+    border-radius: 0;
+}
+
+.panel-heading{
+	padding:0px;
+	position:relative;
+}
+.panel-heading img{
+	width:100%;
+}
+.carousel-control.left {
+    background-image: none;
+}
+.carousel-control.right{
+    background-image: none;
+}
+/*footer{
+   background-color:black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    text-align: center;
+    color: #CCC;
+	margin-top:90px;
+}*/
+/*.footer{
+position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+footer p {
+    padding: 10.5px;
+    margin: 0px;
+    line-height: 100%;
+}*/
+
+.imgProducts{
+	height:180px;
+	width:180px;
+}
+

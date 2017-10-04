@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ShopWise</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='userHomePage.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+    });
+});
+  </script>
+  <script>
+  $( document ).ready(function() {
+    $("[rel='tooltip']").tooltip();    
+ 
+    $('.thumbnail').hover(
+        function(){
+            $(this).find('.caption').fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').fadeOut(205)
+        }
+    ); 
+});</script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+   <div class="navbar-header">
+      <div class="navbar-brand"><img src="https://vignette4.wikia.nocookie.net/logopedia/images/2/21/Shopwise_logo.png/revision/latest?cb=20150101094421" id="logo"><!--p id="headerShopWise">ShopWise</p></img ></div-->
+   </div>
+   <div class="col-xs-6 col-xs-offset-1">
+    <ul class="nav navbar-nav">
+            
+        <div class="input-group" style="margin-top:20px;">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span id="search_concept">All Categories</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Cars</a></li>
+                      <li><a href="#its_equal">Mobile</a></li>
+                      <li><a href="#greather_than">Books</a></li>
+                      <li><a href="#less_than">Real Estate </a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search..">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+    
+    </ul>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+     <li><button class="btn btn-danger navbar-btn" href="#myaccount" data-toggle="modal" data-target="#mymodal" style="margin-top:20px;">My Account</button></li>
+      <li><a href="{{url_for('postAd')}}"> <button class="btn btn-danger navbar-btn" style="margin-top:5px">Post Free Ad</button></a></li>
+    </ul>
+</div>
+</nav>
+<!-- Modal-->
+ <div class="modal fade" id="mymodal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">My Account</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+	<div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-10 bhoechie-tab-container">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+              <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                  <h4>My Profile</h4><br/>
+                </a>
+                <a href="#" id= "ads" class="list-group-item text-center">
+                  <h4 >My Ads</h4><br/>
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4>Chats</h4><br/>
+                </a>
+				 <a href="#" class="list-group-item text-center">
+                  <h4>My Orders</h4><br/>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                <!-- Profile section -->
+                <div class="bhoechie-tab-content active">
+                    <center>
+					<div class ="row">
+                     <div class="col-md-4">
+					 <div class="thumbnail">
+                <div class="caption">
+                    <!--center><a href="" class="label label-danger"  title="Zoom" style="margin-top:50%">Change Picture</a></center-->
+					<label class="btn-bs-file btn btn-xs btn-warning" style="margin-top:60px">
+                Change Picture
+         
+            </label>
+                </div>
+                <img src="http://lorempixel.com/400/300/sports/1/" alt="..." style="height:150px;width:200px;">
+            </div>
+					 </div>
+					  <div class="col-md-8">
+					  <div class="well"style="margin-left: 5px; width:100%" >
+				<h4>Name: {{firstname}} {{lastname}}</h4></div>
+					  </div>
+					  </div>
+					  <div class="row">
+					  <button class="btn btn-danger navbar-btn" style="margin-top:5px; margin-left:40px;"">Edit Details</button>
+					  <a href="" style="margin-left:20px">Change Password</a>
+                    </center>
+                </div>
+                <!-- Ad section -->
+                <div class="bhoechie-tab-content">
+                    <center>
+					
+					<div class="col-md-12">
+					<div class="panel panel-default text-center">
+                    <div class="panel-heading">
+						 
+                    </div>
+					
+                    <div class="panel-body" >
+                       <table class="table table-hover" style="width:100%;height:100%" >
+						 <thead>
+							<tr>
+								<th><center>Title</center></th>
+								<th><center>Category</center></th>
+								<th><center>Price</center></th>
+								<th><center>Action</center></th>
+							</tr>
+						 </thead>
+						 {% for row in rows %}
+						  <tr>
+						    <td>{{row[1]}}</td>
+							<td>{{row[2]}}</td>
+							<td>{{row[3]}}</td>
+							<td> <a href = "{{url_for('editad',ad_id = row[0])}}"><button class="btn btn-default">Edit</button></a> <a href = "{{url_for('deleteAd',ad_id = row[0])}}"><button class="btn btn-default">Delete</button></a></td>
+						  </tr>
+						 {% endfor %}
+						</table>
+                    </div>
+					</div>
+                </div>
+				
+                    </center>
+                </div>
+    
+                <!-- Chat section -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                     
+                    </center>
+                </div>
+				<!-- Orders section -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                      
+                    </center>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" id="map-container">  
+<!-- Vertical Menu-->  
+	<div class="col-sm-3">
+	<div class="well">
+	<ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="">Categories</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Homes</a></li>
+        <li><a href="#">Cars</a></li>
+		<li><a href="#">Bikes</a></li>
+		<li><a href="#">Mobiles and Tablets</a></li>
+		<li><a href="#">Furniture</a></li>
+		<li><a href="#">Kids and Toys</a></li>
+		<li><a href="#">Electronics</a></li>
+		<li><a href="#">Education</a></li>
+		<li><a href="#">Salon at Home</a></li>
+		<li><a href="#">Pets and Pet Care</a></li>
+		<li><a href="#">Entertainment</a></li>
+		<li><a href="#">Events</a></li>
+		<li><a href="#">Cars</a></li>
+      </ul>
+</div>
+</div>
+	<div class="col-sm-9">
+	<h3>Welcome {{firstname}} {{lastname}}</h3>
+<!--First Carousel-->
+	<div class="container" style=" margin-bottom:20px; "><div class="row"><h4> Everything About Cars !</h4></div></div>
+    <div id="myCarousel1" class="carousel slide">
+    	<div id="myCarousel1" class="carousel slide" data-interval="false" >
+	  <div class="carousel-inner" role="listbox">
+			<div class="item active">
+			  <div class="row" >
+			
+			
+            <div class="col-md-4">
+			
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img  class="imgProducts" src="https://farm6.staticflickr.com/5160/7070770795_18e1803126_b.jpg"  />
+                    </div>
+                    <div class="panel-body">  
+                         <h4>Maruti Ertiga</h4><p style="color:red"> Price: 6.50 lakhs</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class="imgProducts" src="https://farm4.staticflickr.com/3904/14979006637_073132160f_b.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Maruti Celerio</h4>
+                        <p style="color:red">Price:4.65 lakhs</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts"src="https://www.motoroids.com/wp-content/uploads/2014/03/New-2014-Honda-City-exterior-30.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Honda City i-DTEC </h4>
+                        <p style="color:red">Price:5.25 lakhs</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+			</div>
+			</div>
+			<div class="item">
+			  <div class="row">
+            <div class="col-md-4 ">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="http://1.bp.blogspot.com/-YzofyyY6uAk/VkyIqJ68i1I/AAAAAAABPJw/Z0ihjIi_Dy8/w800/2016-Chevy-Cruze-105.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Chevrolet Cruze</h4>
+                        <p style="color:red">Price:5.25 lakhs</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+ 
+        </div>
+			</div>
+
+
+		  </div>
+			
+			
+
+		  <a class="left carousel-control" href="#myCarousel1" role="button" data-slide="prev">
+			<span  aria-hidden="true"><i class="fa fa-chevron-circle-left"></i>
+</span>
+			<span class="sr-only">Previous</span>
+		  </a>
+		  <a class="right carousel-control" href="#myCarousel1" role="button" data-slide="next">
+			<span  aria-hidden="true"><i class="fa fa-chevron-circle-right"></i>
+</span>
+			<span class="sr-only">Next</span>
+		  </a>
+	</div>
+    </div>
+	<!--Second Carousel-->
+	<div class="container" style=" margin-bottom:20px; "><div class="row" style="margin-right:40px;"><h4>Residential And Commercial Properties</h4></div></div>
+    <div id="myCarousel2" class="carousel slide">
+    	<div id="myCarousel2" class="carousel slide" data-interval="false">
+	  <div class="carousel-inner" role="listbox">
+			<div class="item active">
+			  <div class="row" >
+			
+			
+            <div class="col-md-4 ">
+			
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts"src="https://imganuncios.mitula.net/3_bhk_apartment_4640067484956370783.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Renuka Appartments,Pimpri</h4> 
+						<p style="color:red">44.5L-96.8L</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="https://www.99acres.com/customised/dreams-group-dreams-rhythm-pune-residential-property/gifs/slide-2.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Dhaval Appartment,Wagholi</h4>
+                        <p style="color:red">24.8L-38L</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="http://www.bisell.in/AdImages/2-bhk-residential-apartment-in-kondhwa-pune-pune-13704392016111243.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Purple Touch,Aundh</h4>
+                        <p style="color:red">84.2L-97.6L</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+        
+			</div>
+			</div>
+			<div class="item">
+			  <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="https://www.99acres.com/microsite/malhar-villa-jejuri-pune-residential-property/files/2013/03/elev1.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Sai Laurel Park,New Sangvi</h4>
+                        <p style="color:red">87.5L-99.4L</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="https://housing.dasa.ncsu.edu/wp-content/uploads/sites/25/2016/12/APT-WR.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Shubham Appartment, Baner</h4>
+                        <p style="color:red">89.7L-95.3L</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+			</div>
+
+
+		  </div>
+			
+			
+
+		  <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev">
+			<span  aria-hidden="true"><i class="fa fa-chevron-circle-left"></i>
+</span>
+			<span class="sr-only">Previous</span>
+		  </a>
+		  <a class="right carousel-control" href="#myCarousel2" role="button" data-slide="next">
+			<span  aria-hidden="true"><i class="fa fa-chevron-circle-right"></i>
+</span>
+			<span class="sr-only">Next</span>
+		  </a>
+	</div>
+    </div>
+	
+	<!--Third Carousel-->
+
+	<div class="container" style=" margin-bottom:20px; "><div class="row" style="margin-right:40px;"><h4>Get Your Dream Gadgets</h4></div></div>
+    <div id="myCarousel3" class="carousel slide">
+    	<div id="myCarousel3" class="carousel slide" data-interval="false">
+	  <div class="carousel-inner" role="listbox">
+			<div class="item active">
+			  <div class="row" >
+			
+			
+            <div class="col-md-4">
+			
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+					
+                      <img class ="imgProducts" src="http://1.bp.blogspot.com/-SjYo4adJOdI/UL-EgS0dZ0I/AAAAAAAAA14/_Qxlthx__eE/s1600/htc-one-x-review-66-1020_large_verge_super_wide.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>HTC one-X</h4>
+                        <p style="color:red">Price:₹4560</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="http://static.ibnlive.in.com/pix/slideshow/04-2012/weekly-roundup-gadgets/7-220412.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Silicon Pen Drive</h4>
+                        <p style="color:red">Price:₹550</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="http://www.theautomotiveindia.com/forums/attachments/gadgets-more/213949d1478697627t-some-new-gadgets-found-ricoh.jpg" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>BISCOH Printers</h4>
+                        <p style="color:red">Price:₹6700</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+          
+        
+			</div>
+			</div>
+			<div class="item">
+			  <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                      <img class ="imgProducts" src="http://lorempixel.com/400/200" />
+                    </div>
+                    <div class="panel-body">
+                        <h4>Huawei Z543</h4>
+                        <p style="color:red">Price:₹3700</p>
+                        <a class="btn btn-primary" href="#">Learn More <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+			</div>
+
+
+		  </div>
+			
+			
+
+		  <a class="left carousel-control" href="#myCarousel3" role="button" data-slide="prev">
+			<span  aria-hidden="true"><i class="fa fa-chevron-circle-left"></i>
+</span>
+			<span class="sr-only">Previous</span>
+		  </a>
+		  <a class="right carousel-control" href="#myCarousel3" role="button" data-slide="next">
+			<span  aria-hidden="true"><i class="fa fa-chevron-circle-right"></i>
+</span>
+			<span class="sr-only">Next</span>
+		  </a>
+	</div>
+    </div>
+	
+</div>
+</div>
+<footer style="background-color: black; margin-top: 10px; color:white;">
+<center>  © 2017, ShopWise, All rights reserved</center>
+</footer>
+</body>

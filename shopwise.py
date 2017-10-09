@@ -36,9 +36,9 @@ def initdb_command():
 
 
 def get_db():
-    """Opens a new database connection if there is none yet for the
-    current application context.
-    """
+   """Opens a new database connection if there is none yet for the
+   current application context.
+   """
    if not hasattr(g, 'sqlite_db'):
      g.sqlite_db = connect_db()
    return g.sqlite_db
@@ -177,7 +177,7 @@ def deleteAd(ad_id=None):
     flash("Deleted Successfully!!!! ")
     return render_template('userHomePage.html',\
  	    firstname=session['firstname'],\
-		lastname=session['lastname'], row=showad()\
+		lastname=session['lastname'], rows=showad()\
 	)
     
     

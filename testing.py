@@ -22,8 +22,8 @@ class ShopWiseTestCase(unittest.TestCase):
     @classmethod	
     def tearDownClass(cls):
 	    ''' To close the database connection '''
-        os.close(cls.db_fd)
-        os.unlink(shopwise.app.config['DATABASE'])
+	    os.close(cls.db_fd)
+	    os.unlink(shopwise.app.config['DATABASE'])
 	
 	
     def test_homepage(self):
@@ -43,7 +43,7 @@ class ShopWiseTestCase(unittest.TestCase):
 	
     def test_register(self):
 	    ''' Test case to check registration of new User '''
-        rv = self.register('Aarti', 'Walimbe', 'aa', 'aa')
+	    rv = self.register('Aarti', 'Walimbe', 'aa', 'aa')
 	    self.assertEqual(rv.status_code, 200)
 	
 	

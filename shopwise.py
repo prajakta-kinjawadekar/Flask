@@ -81,7 +81,7 @@ def login():
     username = request.form['username']
     password = request.form['password']
     db = get_db()
-	#To check whether user is a registered user
+    #To check whether user is a registered user
     cur = db.execute('select * from registered_user where \
 	    username = (?) and password = (?)', [username, password]\
 	)  
@@ -136,7 +136,7 @@ def showad():
 def editad(ad_id=None):
     """Creates the url for editing advertisement created 
 	by the logged in user
-	"""
+    """
     if request.method == 'POST': 
         db = get_db()
         cur = db.cursor()
@@ -166,7 +166,7 @@ def editad(ad_id=None):
     return render_template('postAd.html', ad_data=ad_data)     
 
 
-@app.route('/delete', methods=['GET'])    
+    
 @app.route('/delete/<int:ad_id>', methods=['GET'])
 def deleteAd(ad_id=None):
     """Creates the url for deleting ad by the logged in user"""

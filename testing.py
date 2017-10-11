@@ -43,7 +43,7 @@ class ShopWiseTestCase(unittest.TestCase):
 	
     def test_register(self):
 	    ''' Test case to check registration of new User '''
-	    rv = self.register('Aarti', 'Walimbe', 'aa', 'aa')
+	    rv = self.register('Prajakta', 'kinjawadekar', 'praju123', 'praju123')
 	    self.assertEqual(rv.status_code, 200)
 	
 	
@@ -56,8 +56,8 @@ class ShopWiseTestCase(unittest.TestCase):
 	
     def test_login(self):
 	    ''' Test case to check successful login of User '''
-	    rv = self.register('Prajakta', 'kinjawadekar', 'aa', 'aa')
-	    rv1 = self.login('aa', 'aa')
+	    rv = self.register('Prajakta', 'kinjawadekar', 'praju123', 'praju123')
+	    rv1 = self.login('praju123', 'praju123')
 	    self.assertEqual(rv1.status_code, 200)
 	
 	
@@ -72,15 +72,46 @@ class ShopWiseTestCase(unittest.TestCase):
 		    address = address    
         ), follow_redirects=True)
 	
-	
+    
     def test_postAd(self):
 	    ''' Test case to check successful posting of ad by User '''
-	    rv = self.register('Aarti', 'Walimbe', 'aa', 'aa')
-	    rv = self.login('aa', 'aa')
+	    rv = self.register('Prajakta', 'Kinjawadekar', 'praju123', 'praju123')
+	    rv = self.login('praju123', 'praju123')
 	    rv1 = self.postAd('aa', 'Cars', 67, 'gfygdu', 89578598, 'fuis@gmail', 'gr' )
 	    self.assertEqual(rv1.status_code, 200)
 	
-	
+
+    def test_editad(self):
+	    rv = self.register('Prajakta', 'Kinjawadekar', 'praju123', 'praju123')
+	    rv = self.login('praju123', 'praju123')
+	    rv = self.postAd('aa', 'Cars', 67, 'gfygdu', 89578598, 'fuis@gmail', 'gr' )
+	    rv1 = self.editad_get()
+	    rv1 = self.editad('aa', 'Cars', 788, 'gfygdu', 89578598, 'fuis@gmail', 'gr')
+	    self.assertEqual(rv1.status_code, 200)
+	    
+    def editad_get(self):
+            return self.app.get('/editad',follow_redirects=True)
+        
+    def editad(self, title, category, price, name, mobile, email, address):
+            return self.app.post('/editad/1', data=dict(
+            title = title,
+            category = category, 
+            price = price,
+		    name = name,
+		    mobile = mobile,
+		    email = email,
+		    address = address    
+        ), follow_redirects=True)
+        
+    def test_delete_ad(self):
+	    rv = self.register('Prajakta', 'Kinjawadekar', 'praju123', 'praju123')
+	    rv = self.login('praju123', 'praju123')
+	    rv = self.postAd('aa', 'Cars', 67, 'gfygdu', 89578598, 'fuis@gmail', 'gr' )
+	    rv1 = self.delete_ad()
+	    self.assertEqual(rv1.status_code, 200)
+	    
+    def delete_ad(self):
+            return self.app.get('/delete/1',follow_redirects=True)
 if __name__ == '__main__':
     unittest.main()
   
